@@ -19,18 +19,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 __DOC__ = r"""
-str object with color attributes
+# ColorStr
 
-Main str method are overrided and return ansi colored string,
-other methods simply use plain str text (see source code for 
-details)
+String type object that override basic str, usefull for printing colored
+strings in console (if Ansi compatible)
+
+Main str method are overrided and return colored string, other methods 
+simply use plain str text (see source code for details)
 The % operator use some workaround to work with Colorstr, if you see
 strange behaviors please mail me, thanks.
 
-To get plain text use object.__repr__() 
+To get plain text use
+    Colorstr.__repr__() 
 
 Colors and attributes use same sintax of Ansi string:
-\033[<attributes list>m"""
+    \033[<attributes list>m"""
 
 __VERSION__ = '0.2'
 

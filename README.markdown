@@ -8,7 +8,8 @@ simply use plain str text (see source code for details)
 The % operator use some workaround to work with Colorstr, if you see
 strange behaviors please mail me, thanks.
 
-To get plain text use object.__repr__() 
+To get plain text use
+    Colorstr.__repr__() 
 
 Colors and attributes use same sintax of Ansi string:
     \033[<attributes list>m
