@@ -24,13 +24,13 @@ __DOC__ = r"""
 String type object that override basic str, usefull for printing colored
 strings in console (if Ansi compatible)
 
-Main str method are overrided and return colored string, other methods 
+Main str method are overrided and return colored string, other methods
 simply use plain str text (see source code for details)
 The % operator use some workaround to work with Colorstr, if you see
 strange behaviors please mail me, thanks.
 
 To get plain text use
-    Colorstr.__repr__() 
+    Colorstr.__repr__()
 
 Colors and attributes use same sintax of Ansi string:
     \033[<attributes list>m"""
@@ -42,12 +42,15 @@ __VERSION__ = '0.2'
 class DefaultException(Exception):
 	def __init__(self,value=''):
 		self.value = value
-		
+
 	def __str__(self):
 		return repr(self.value)
 
 class NotImplemendYet(DefaultException):
 	""" Not implemented """
+
+class NotValidAnsiColors(DefaultException):
+	""" Invalid escape sequence """
 
 # ANSI SEQUENCES
 
@@ -68,7 +71,7 @@ def getColorSeq(ansiColors=[0]):
 	if type(ansiColors) != list:
 			raise NotValidAnsiColors(type(ansiColors))
 	return COLOR_ANSI + ''.join([str(item)+';' for item in ansiColors[:-1]])+str(ansiColors[-1]) + 'm'
-	
+
 def black(text): return getColorSeq([F_BLACK])+text+RESET_ANSI
 def red(text): return getColorSeq([F_RED])+text+RESET_ANSI
 def green(text): return getColorSeq([F_GREEN])+text+RESET_ANSI
@@ -85,7 +88,7 @@ def dark(text): return getColorSeq([DARK])+text+RESET_ANSI
 class ColorStr(str):
 	def __new__(self,text,ansiColors=[0]):
 		return str.__new__(self,text)
-	
+
 	def __init__(self,text,ansiColors):
 		"""
 		@param text: what will be printed
@@ -96,8 +99,8 @@ class ColorStr(str):
 		if type(ansiColors) != list:
 			raise NotValidAnsiColors(type(ansiColors))
 		self.colorString = '\033['+''.join([str(item)+';' for item in ansiColors[:-1]])+str(ansiColors[-1])+'m'
-	
-	def _modFixer(self,args):
+
+	def __modFixer(self,args):
 		"""
 		Fix string formatter, in case you use Colorstr in args
 		"""
@@ -122,7 +125,7 @@ class ColorStr(str):
 					newArgs = newArgs + (item,)
 			return newArgs
 		return str(args)+self.colorString
-	
+
 	def __repr__(self):
 		return str.__str__(self)
 
@@ -130,12 +133,12 @@ class ColorStr(str):
 		return self.colorString+str.__str__(self)+RESET_ANSI
 
 	def __mod__(self,args):
-		newArgs = self._modFixer(args)
+		newArgs = self.__modFixer(args)
 		return self.colorString+(str.__str__(self) % newArgs)+RESET_ANSI
 
 	def __add__(self,value):
 		return self.__str__() + value
-		
+
 	def __radd__(self,value):
 		return value + self.__str__()
 
@@ -168,5 +171,5 @@ if __name__ == '__main__':
 	t_str = ColorStr('This %s a %s',[F_GREEN])
 	t_is = ColorStr('is',[B_GREEN,F_BLACK])
 	t_test = ColorStr('Test',[F_WHITE,B_YELLOW])
-	
+
 	print t_str % (t_is,t_test)
