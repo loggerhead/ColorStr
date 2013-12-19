@@ -1,2 +1,4 @@
-*.pyc
-.DS_Store
+*.py[oc]
+test.py
+test.pyc
+

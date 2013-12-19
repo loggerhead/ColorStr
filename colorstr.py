@@ -35,13 +35,6 @@ Colors and attributes use same sintax of ANSI string:
 """
 
 
-__VERSION__ = '0.1'
-
-
-class NotValidColors(Exception):
-    pass
-
-
 class ColorStr(str):
     """
     WARNING: Do not use `ColorStr` as `str` ! Please use it just need printing
@@ -78,7 +71,7 @@ class ColorStr(str):
         colors = [c.lower() for c in colors]
         all_colors = set(cls._color.keys())
         if not set(colors).issubset(all_colors):
-            raise NotValidColors()
+            raise Exception('invalid colors')
 
         text = cls.render(text, *colors)
         return str.__new__(cls, text)
