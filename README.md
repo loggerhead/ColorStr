@@ -2,7 +2,7 @@
 A subclass of `str`, useful for printing colored
 strings in console (if ANSI compatible)  
 
-`%` `format` is override, but other `str` function is mess (see [examples](#Examples) or [source code](https://github.com/loggerhead/ColorStr/blob/master/colorstr.py) for details)  
+`%` `format` is override, but other `str` function is mess (see [examples](#examples) or [source code](https://github.com/loggerhead/ColorStr/blob/master/colorstr.py) for details)  
 
 __WARNING:__ _Do not use `ColorStr` as `str` ! Invoke any function will convert `ColorStr` to `str`_  
 
