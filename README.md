@@ -1,15 +1,17 @@
 #ColorStr
 A subclass of `str`, useful for printing colored
-strings in console (if ANSI compatible)
+strings in console (if ANSI compatible)  
 
 `%` `format` is override, but other `str` function is mess (see [examples](#Examples) or [source code](https://github.com/loggerhead/ColorStr/blob/master/colorstr.py) for details)  
-If you see strange behaviors please [open a issue](https://github.com/loggerhead/ColorStr/issues), thanks
 
-__WARNING__: _Do not use `ColorStr` as `str` ! Please use it just need printing colored strings. Invoke any function will convert `ColorStr` to `str`_
+__WARNING:__ _Do not use `ColorStr` as `str` ! Invoke any function will convert `ColorStr` to `str`_  
 
+If you see strange behaviors please [open a issue](https://github.com/loggerhead/ColorStr/issues), thanks.  
 - - - - -
 
 #Usage
+
+colors: `underline` `reverse` `normal` `bright` `bold` `dark` `black` `red` `green` `yellow` `blue` `magenta` `cyan` `white`
     
     ColorStr(string[, color1, color2, ...])
     
