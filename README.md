@@ -1,13 +1,12 @@
 #ColorStr
-A subclass of `str`, useful for printing colored
-strings in console (if ANSI compatible)  
+A subclass of `str`, useful for printing colored strings in console (if ANSI compatible).
 
-`%` `format` is override, but other `str` function is mess (see [examples](#examples) or [source code](https://github.com/loggerhead/ColorStr/blob/master/colorstr.py) for details)  
+-------
 
-__WARNING:__ _Do not use `ColorStr` as `str` ! Invoke any function will convert `ColorStr` to `str`_  
+Recommend you to use a better alternate like: [termcolor](https://pypi.python.org/pypi/termcolor), [colorama](https://pypi.python.org/pypi/colorama)
 
-If you see strange behaviors please [open a issue](https://github.com/loggerhead/ColorStr/issues), thanks.  
-- - - - -
+#Notice
+`%` `format` is override, but other `str` function is mess (see [examples](#examples) or [source code](https://github.com/loggerhead/ColorStr/blob/master/colorstr.py) for details). So... Do __NOT__ use `ColorStr` as `str`! Calling any function will convert `ColorStr` to `str`.
 
 #Usage
 
@@ -15,14 +14,14 @@ colors: `underline` `reverse` `normal` `bright` `bold` `dark` `black` `red` `gre
     
     ColorStr(string[, color1, color2, ...])
     
-Get color str:    
+Get color str    
 
 ```python
 cs = ColorStr('hello, world', 'blue', 'b_white')
 print(cs)
 ```
 
-Turn `ColorStr` to normal `str`:
+Turn `ColorStr` to normal `str`
 
 ```python
 ColorStr.get_plain(string)
